@@ -1,0 +1,3 @@
+truncate TABLE ZIP_CODES;
+
+EXIT

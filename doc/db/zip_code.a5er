@@ -1,0 +1,167 @@
+﻿# A5:ER FORMAT:14
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright (C)2007 m.matsubara
+# A5:SQL Mk-2 Copyright (C)1997 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=郵便番号検索システム
+Author=
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",2,"A3Landscape",$FFFFFF
+Domain=ID=@DECIMAL(11,0)
+DomainInfo="ID","@DECIMAL(11,0)","ドメイン特定の知識のない、レコードのID"
+Domain=全国地方公共団体コード=@VARCHAR(5)
+DomainInfo="全国地方公共団体コード","@VARCHAR(5)",""
+Domain=旧郵便番号=@VARCHAR(5)
+DomainInfo="旧郵便番号","@VARCHAR(5)",""
+Domain=郵便番号=@VARCHAR(7)
+DomainInfo="郵便番号","@VARCHAR(7)",""
+Domain=都道府県名カナ=@VARCHAR(10 CHAR)
+DomainInfo="都道府県名カナ","@VARCHAR(10 CHAR)",""
+Domain=市区町村名カナ=@VARCHAR(30 CHAR)
+DomainInfo="市区町村名カナ","@VARCHAR(30 CHAR)",""
+Domain=町域名カナ=@VARCHAR(100 CHAR)
+DomainInfo="町域名カナ","@VARCHAR(100 CHAR)",""
+Domain=都道府県名=@VARCHAR(5 CHAR)
+DomainInfo="都道府県名","@VARCHAR(5 CHAR)",""
+Domain=市区町村名=@VARCHAR(20 CHAR)
+DomainInfo="市区町村名","@VARCHAR(20 CHAR)",""
+Domain=町域名=@VARCHAR(50 CHAR)
+DomainInfo="町域名","@VARCHAR(50 CHAR)",""
+Domain=フラグ=@VARCHAR(1)
+DomainInfo="フラグ","@VARCHAR(1)",""
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=2
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=10
+PaperSize=A4Landscape
+HeaderLeft=%ProjectName% %PageName%
+HeaderCenter=
+HeaderRight=%Date%
+FooterLeft=
+FooterCenter=
+FooterRight=%PageNo% / %PageCount%
+ShowPageoutRelation=1
+RDBMSTypeName=Oracle Database
+BackupRestoreTempTable=0
+CreateFK_ParentCard1Only=1
+FKParentIndex=1
+GenerateCommentStatement_Separator=	
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+UpperCaseKeyword=0
+CreateOrder=Dependent
+ShowTag=1
+ShowCommonAttributes=0
+
+[Entity]
+PName=ZIP_CODES
+LName=郵便番号
+Comment=郵便局が提供している郵便番号データ\nhttp://www.post.japanpost.jp/zipcode/dl/readm.htm
+TableOption=
+Page=MAIN
+Left=1000
+Top=300
+Field="ID","ID","*ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="全国地方公共団体コード","JAPANESE_LOCAL_GOVERMENT_CODE","*全国地方公共団体コード",,,"","JIS X0401、X0402",$FFFFFFFF,""
+Field="旧郵便番号","OLD_ZIP_CODE","*旧郵便番号",,,"","",$FFFFFFFF,""
+Field="郵便番号","ZIP_CODE","*郵便番号",,,"","",$FFFFFFFF,""
+Field="都道府県名カナ","PREFECTURE_NAME_KANA","*都道府県名カナ",,,"","半角カタカナ（コード順に掲載）",$FFFFFFFF,""
+Field="市区町村名カナ","CITY_NAME_KANA","*市区町村名カナ",,,"","半角カタカナ（コード順に掲載）",$FFFFFFFF,""
+Field="町域名カナ","TOWN_NAME_KANA","*町域名カナ",,,"","半角カタカナ（五十音順に掲載）",$FFFFFFFF,""
+Field="都道府県名","PREFECTURE_NAME","*都道府県名",,,"","漢字（コード順に掲載）",$FFFFFFFF,""
+Field="市区町村名","CITY_NAME","*市区町村名",,,"","漢字（コード順に掲載）",$FFFFFFFF,""
+Field="町域名","TOWN_NAME","*町域名",,,"","漢字（五十音順に掲載）",$FFFFFFFF,""
+Field="複数番号付与町域フラグ","TOWN_DEVIDED_FLAG","*フラグ",,,"","一町域が二以上の郵便番号で表される場合の表示（「1」は該当、「0」は該当せず）",$FFFFFFFF,""
+Field="小字毎番号付与フラグ","ISSUED_PER_KOAZA_FLAG","*フラグ",,,"","小字毎に番地が起番されている町域の表示（「1」は該当、「0」は該当せず）",$FFFFFFFF,""
+Field="丁目保有町域フラグ","CHOME_TOWN_FLAG","*フラグ",,,"","丁目を有する町域の場合の表示（「1」は該当、「0」は該当せず）",$FFFFFFFF,""
+Field="複数町域保有フラグ","HAS_MULTIPLE_TOWN_FLAG","*フラグ",,,"","一つの郵便番号で二以上の町域を表す場合の表示（「1」は該当、「0」は該当せず）",$FFFFFFFF,""
+Field="更新の表示","UPDATE_DISPLAY_FLAG","*フラグ",,,"","「0」は変更なし、「1」は変更あり、「2」廃止（廃止データのみ使用）",$FFFFFFFF,""
+Field="変更理由","CHANGE_REASON_FLAG","*フラグ",,,"","「0」は変更なし、「1」市政・区政・町政・分区・政令指定都市施行、「2」住居表示の実施、「3」区画整理、「4」郵便区調整等、「5」訂正、「6」廃止（廃止データのみ使用）",$FFFFFFFF,""
+Index==2,JAPANESE_LOCAL_GOVERMENT_CODE ,OLD_ZIP_CODE ,ZIP_CODE ,PREFECTURE_NAME_KANA ,CITY_NAME_KANA ,TOWN_NAME_KANA ,PREFECTURE_NAME ,CITY_NAME ,TOWN_NAME ,TOWN_DEVIDED_FLAG ,ISSUED_PER_KOAZA_FLAG ,CHOME_TOWN_FLAG ,HAS_MULTIPLE_TOWN_FLAG ,UPDATE_DISPLAY_FLAG ,CHANGE_REASON_FLAG 
+Index==0,JAPANESE_LOCAL_GOVERMENT_CODE 
+Index==0,ZIP_CODE
+Index==0,PREFECTURE_NAME 
+Index==0,CITY_NAME 
+Index==0,PREFECTURE_NAME_KANA 
+Index==0,CITY_NAME_KANA 
+EffectMode=None
+Tag=住所
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20200814222042
+Position="MAIN",1000,300
+ZOrder=31
+
+[View]
+PName=PREFECTURES
+LName=都道府県
+Tag=住所
+Comment=
+ViewOption=
+Query=SELECT DISTINCT\n  SUBSTR(JAPANESE_LOCAL_GOVERMENT_CODE, 1, 2) AS PREFECTURE_CODE -- 都道府県コード\n  , PREFECTURE_NAME -- 都道府県名\nFROM\n  ZIP_CODES\nWHERE\n  UPDATE_DISPLAY_FLAG IN (\q0\q, \q1\q)
+LNameByComment=1
+Color=$000000
+BkColor=$FFFFFF
+Position="MAIN",1800,350
+ZOrder=32
+Page=MAIN
+Left=1800
+Top=350
+
+[View]
+PName=CITIES
+LName=市区町村
+Tag=住所
+Comment=
+ViewOption=
+Query=SELECT DISTINCT\n  SUBSTR(JAPANESE_LOCAL_GOVERMENT_CODE, 1, 2) AS PREFECTURE_CODE -- 都道府県コード\n  , JAPANESE_LOCAL_GOVERMENT_CODE -- 地方公共団体コード\n  , PREFECTURE_NAME -- 都道府県名\n  , CITY_NAME -- 市区町村名\nFROM\n  ZIP_CODES\nWHERE\n  UPDATE_DISPLAY_FLAG IN (\q0\q, \q1\q)
+LNameByComment=1
+Color=$000000
+BkColor=$FFFFFF
+Position="MAIN",1800,600
+ZOrder=33
+Page=MAIN
+Left=1800
+Top=600
+
+[Entity]
+PName=ZIP_CODES_WORK
+LName=郵便番号ワーク
+Comment=郵便局が提供している郵便番号データ\nhttp://www.post.japanpost.jp/zipcode/dl/readm.htm\ncsvファイルをインポートするためのワークテーブル
+TableOption=
+Page=MAIN
+Left=200
+Top=300
+Field="全国地方公共団体コード","JAPANESE_LOCAL_GOVERMENT_CODE","*全国地方公共団体コード",,,"","JIS X0401、X0402",$FFFFFFFF,""
+Field="旧郵便番号","OLD_ZIP_CODE","*旧郵便番号",,,"","",$FFFFFFFF,""
+Field="郵便番号","ZIP_CODE","*郵便番号",,,"","",$FFFFFFFF,""
+Field="都道府県名カナ","PREFECTURE_NAME_KANA","*都道府県名カナ",,,"","半角カタカナ（コード順に掲載）",$FFFFFFFF,""
+Field="市区町村名カナ","CITY_NAME_KANA","*市区町村名カナ",,,"","半角カタカナ（コード順に掲載）",$FFFFFFFF,""
+Field="町域名カナ","TOWN_NAME_KANA","*町域名カナ",,,"","半角カタカナ（五十音順に掲載）",$FFFFFFFF,""
+Field="都道府県名","PREFECTURE_NAME","*都道府県名",,,"","漢字（コード順に掲載）",$FFFFFFFF,""
+Field="市区町村名","CITY_NAME","*市区町村名",,,"","漢字（コード順に掲載）",$FFFFFFFF,""
+Field="町域名","TOWN_NAME","*町域名",,,"","漢字（五十音順に掲載）",$FFFFFFFF,""
+Field="複数番号付与町域フラグ","TOWN_DEVIDED_FLAG","*フラグ",,,"","一町域が二以上の郵便番号で表される場合の表示（「1」は該当、「0」は該当せず）",$FFFFFFFF,""
+Field="小字毎番号付与フラグ","ISSUED_PER_KOAZA_FLAG","*フラグ",,,"","小字毎に番地が起番されている町域の表示（「1」は該当、「0」は該当せず）",$FFFFFFFF,""
+Field="丁目保有町域フラグ","CHOME_TOWN_FLAG","*フラグ",,,"","丁目を有する町域の場合の表示（「1」は該当、「0」は該当せず）",$FFFFFFFF,""
+Field="複数町域保有フラグ","HAS_MULTIPLE_TOWN_FLAG","*フラグ",,,"","一つの郵便番号で二以上の町域を表す場合の表示（「1」は該当、「0」は該当せず）",$FFFFFFFF,""
+Field="更新の表示","UPDATE_DISPLAY_FLAG","*フラグ",,,"","「0」は変更なし、「1」は変更あり、「2」廃止（廃止データのみ使用）",$FFFFFFFF,""
+Field="変更理由","CHANGE_REASON_FLAG","*フラグ",,,"","「0」は変更なし、「1」市政・区政・町政・分区・政令指定都市施行、「2」住居表示の実施、「3」区画整理、「4」郵便区調整等、「5」訂正、「6」廃止（廃止データのみ使用）",$FFFFFFFF,""
+EffectMode=None
+Tag=住所
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20200814150147
+Position="MAIN",200,300
+ZOrder=77
