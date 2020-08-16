@@ -67,7 +67,7 @@ ShowCommonAttributes=0
 [Entity]
 PName=ZIP_CODES
 LName=郵便番号
-Comment=郵便局が提供している郵便番号データ\nhttp://www.post.japanpost.jp/zipcode/dl/readm.htm
+Comment=「ZIP_CODES_WORK」テーブルからID（連番）を付与してシステム上正式に参照するテーブル
 TableOption=
 Page=MAIN
 Left=1000
@@ -99,7 +99,7 @@ EffectMode=None
 Tag=住所
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20200814222042
+ModifiedDateTime=20200816144441
 Position="MAIN",1000,300
 ZOrder=31
 
@@ -138,7 +138,7 @@ Top=600
 [Entity]
 PName=ZIP_CODES_WORK
 LName=郵便番号ワーク
-Comment=郵便局が提供している郵便番号データ\nhttp://www.post.japanpost.jp/zipcode/dl/readm.htm\ncsvファイルをインポートするためのワークテーブル
+Comment=郵便局が提供している郵便番号データ\nhttps://www.post.japanpost.jp/zipcode/dl/readme.html\ncsvファイルをインポートするためのワークテーブル
 TableOption=
 Page=MAIN
 Left=200
@@ -162,6 +162,22 @@ EffectMode=None
 Tag=住所
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20200814150147
+ModifiedDateTime=20200816075326
 Position="MAIN",200,300
 ZOrder=77
+
+[View]
+PName=ADDRESSES
+LName=住所
+Tag=住所
+Comment=
+ViewOption=
+Query=SELECT\n    ROW_NUMBER() OVER ( \n        ORDER BY\n            ZIP_CODE\n            , PREFECTURE_NAME\n            , CITY_NAME\n            , TOWN_NAME\n    ) AS ID\n    , ZIP_CODE                                  -- 郵便番号\n    , PREFECTURE_NAME                           -- 都道府県名\n    , CITY_NAME                                 -- 市区町村名\n    , TOWN_NAME                                 -- 町域名\n    , PREFECTURE_NAME_KANA                      -- 都道府県名ｶﾅ\n    , CITY_NAME_KANA                            -- 市区町村名ｶﾅ\n    , TOWN_NAME_KANA                            -- 町域名ｶﾅ\nFROM\n    ( \n        SELECT\n            ZIP_CODE\n            , PREFECTURE_NAME\n            , CITY_NAME\n            , TOWN_NAME\n            , PREFECTURE_NAME_KANA\n            , CITY_NAME_KANA\n            , TOWN_NAME_KANA \n        FROM\n            ( \n                SELECT\n                    ZIP_CODE\n                    , PREFECTURE_NAME\n                    , CITY_NAME\n                    , CASE \n                        WHEN NVL(TOWN_NAME, \q\q) = \q以下に掲載がない場合\q \n                            THEN \q\q \n                        ELSE TOWN_NAME \n                        END AS TOWN_NAME\n                    , PREFECTURE_NAME_KANA\n                    , CITY_NAME_KANA\n                    , CASE \n                        WHEN NVL(TOWN_NAME_KANA, \q\q) = \qｲｶﾆｹｲｻｲｶﾞﾅｲﾊﾞｱｲ\q \n                            THEN \q\q \n                        ELSE TOWN_NAME_KANA \n                        END AS TOWN_NAME_KANA \n                FROM\n                    ( \n                        SELECT\n                            ZIP_CODE\n                            , PREFECTURE_NAME\n                            , CITY_NAME\n                            , CASE \n                                WHEN INSTR(TOWN_NAME, \q（\q) > 0 \n                                AND ( \n                                    INSTR(TOWN_NAME, \q）\q) = 0 \n                                    OR INSTR(TOWN_NAME, \q（\q) < INSTR(TOWN_NAME, \q）\q)\n                                ) \n                                    THEN SUBSTR(TOWN_NAME, 1, INSTR(TOWN_NAME, \q（\q) - 1) \n                                WHEN INSTR(TOWN_NAME, \q）\q) > 0 \n                                OR INSTR(TOWN_NAME, \q、\q) > 0 \n                                    THEN NULL \n                                ELSE TOWN_NAME \n                                END AS TOWN_NAME\n                            , PREFECTURE_NAME_KANA\n                            , CITY_NAME_KANA\n                            , CASE \n                                WHEN INSTR(TOWN_NAME_KANA, \q(\q) > 0 \n                                AND ( \n                                    INSTR(TOWN_NAME_KANA, \q)\q) = 0 \n                                    OR INSTR(TOWN_NAME_KANA, \q(\q) < INSTR(TOWN_NAME_KANA, \q)\q)\n                                ) \n                                    THEN SUBSTR( \n                                    TOWN_NAME_KANA\n                                    , 1\n                                    , INSTR(TOWN_NAME_KANA, \q(\q) - 1\n                                ) \n                                WHEN INSTR(TOWN_NAME_KANA, \q)\q) > 0 \n                                OR INSTR(TOWN_NAME_KANA, \q、\q) > 0 \n                                    THEN NULL \n                                ELSE TOWN_NAME_KANA \n                                END AS TOWN_NAME_KANA \n                        FROM\n                            ZIP_CODES \n                        WHERE\n                            UPDATE_DISPLAY_FLAG IN (\q0\q, \q1\q)\n                    ) SQ_A \n                WHERE\n                    TOWN_NAME IS NOT NULL\n            ) SQ_B \n        GROUP BY\n            ZIP_CODE\n            , PREFECTURE_NAME\n            , CITY_NAME\n            , TOWN_NAME\n            , PREFECTURE_NAME_KANA\n            , CITY_NAME_KANA\n            , TOWN_NAME_KANA\n    ) SQ_C\n
+LNameByComment=1
+Color=$000000
+BkColor=$FFFFFF
+Position="Main",1800,950
+ZOrder=78
+Page=Main
+Left=1800
+Top=950
