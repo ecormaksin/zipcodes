@@ -1,8 +1,12 @@
+sourceCompatibility = JavaVersion.VERSION_1_8
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	api project(":domain")
-	api project(":infra")
+	api (
+		project(":domain"),
+		project(":infra")
+	)
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

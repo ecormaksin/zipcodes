@@ -1,5 +1,3 @@
 rootProject.name = 'zipcodes'
 
-include 'domain'
-include 'infra'
-include 'ui'
+include 'domain', 'infra', 'ui'

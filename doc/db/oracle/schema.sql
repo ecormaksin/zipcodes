@@ -1,5 +1,5 @@
 -- Project Name : 郵便番号検索システム
--- Date/Time    : 2020/08/16 14:44:46
+-- Date/Time    : 2020/08/19 20:04:38
 -- Author       : eight
 -- RDBMS Type   : Oracle Database
 -- Application  : A5:SQL Mk-2
@@ -173,6 +173,8 @@ SELECT DISTINCT
   , JAPANESE_LOCAL_GOVERMENT_CODE -- 地方公共団体コード
   , PREFECTURE_NAME -- 都道府県名
   , CITY_NAME -- 市区町村名
+  , PREFECTURE_NAME_KANA -- 都道府県名ｶﾅ
+  , CITY_NAME_KANA -- 市区町村名ｶﾅ
 FROM
   ZIP_CODES
 WHERE
@@ -184,6 +186,7 @@ create view PREFECTURES as
 SELECT DISTINCT
   SUBSTR(JAPANESE_LOCAL_GOVERMENT_CODE, 1, 2) AS PREFECTURE_CODE -- 都道府県コード
   , PREFECTURE_NAME -- 都道府県名
+  , PREFECTURE_NAME_KANA -- 都道府県名ｶﾅ
 FROM
   ZIP_CODES
 WHERE
@@ -205,10 +208,13 @@ comment on column CITIES.PREFECTURE_CODE is '都道府県コード';
 comment on column CITIES.JAPANESE_LOCAL_GOVERMENT_CODE is '地方公共団体コード';
 comment on column CITIES.PREFECTURE_NAME is '都道府県名';
 comment on column CITIES.CITY_NAME is '市区町村名';
+comment on column CITIES.PREFECTURE_NAME_KANA is '都道府県名ｶﾅ';
+comment on column CITIES.CITY_NAME_KANA is '市区町村名ｶﾅ';
 
 comment on table PREFECTURES is '都道府県';
 comment on column PREFECTURES.PREFECTURE_CODE is '都道府県コード';
 comment on column PREFECTURES.PREFECTURE_NAME is '都道府県名';
+comment on column PREFECTURES.PREFECTURE_NAME_KANA is '都道府県名ｶﾅ';
 
 comment on table ZIP_CODES is '郵便番号	 「ZIP_CODES_WORK」テーブルからID（連番）を付与してシステム上正式に参照するテーブル';
 comment on column ZIP_CODES.ID is 'ID';
