@@ -23,13 +23,4 @@ class AddressRepositoryImplTest {
 
 	@Autowired
 	private AddressRepositoryImpl addressRepositoryImpl;
-
-	@Test
-	void _都道府県リストは46件() {
-
-		List<Address> list = addressRepositoryImpl.findAll();
-
-		assertEquals(46, list.size());
-	}
-
 }
