@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 @Transactional
 @Slf4j
-//@AutoConfigureTestEntityManager
+@AutoConfigureTestEntityManager
 class PrefectureRepositoryImplTest {
 
 	@Autowired
@@ -35,9 +36,7 @@ class PrefectureRepositoryImplTest {
 		assertEquals(47, list.size());
 
 		for (DmEtPrefecture obj : list) {
-			log.info(obj.getPrefectureCode().getValue());
-			log.info(obj.getPrefectureName().getValue());
-			log.info(obj.getPrefectureNameKana().getValue());
+			log.info(obj.toString());
 		}
 	}
 

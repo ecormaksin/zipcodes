@@ -16,17 +16,6 @@ import lombok.Getter;
 @Getter
 public class DmEtPrefecture {
 
-	/*
-	@NotNull
-	private String prefectureCode;
-
-	@NotNull
-	private String prefectureName;
-
-	@NotNull
-	private String prefectureNameKana;
-	*/
-
 	@Valid
 	@NotNull
 	private PrefectureCode prefectureCode;
@@ -38,4 +27,16 @@ public class DmEtPrefecture {
 	@Valid
 	@NotNull
 	private PrefectureNameKana prefectureNameKana;
+
+	public String toString() {
+		// @formatter:off
+		return String.format(
+				"{\"prefectureCode\": \"%s\", "
+				+ "\"prefectureName\": \"%s\", "
+				+ "\"prefectureNameKana\": \"%s\"}",
+				prefectureCode.getValue(),
+				prefectureName.getValue(),
+				prefectureNameKana.getValue());
+		// @formatter:on
+	}
 }
