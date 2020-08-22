@@ -10,6 +10,7 @@ import com.example.zipcodes.domain.type.prefecture.PrefectureNameKana;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
 @Builder
@@ -20,10 +21,12 @@ public class DmEtPrefecture {
 	@NotNull
 	private PrefectureCode prefectureCode;
 
+	@Setter
 	@Valid
 	@NotNull
 	private PrefectureName prefectureName;
 
+	@Setter
 	@Valid
 	@NotNull
 	private PrefectureNameKana prefectureNameKana;
