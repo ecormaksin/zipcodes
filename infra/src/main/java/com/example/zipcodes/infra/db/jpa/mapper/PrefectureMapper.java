@@ -16,11 +16,6 @@ import com.example.zipcodes.infra.db.jpa.view.Prefecture;
 @Mapper(injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface PrefectureMapper {
 
-	/*@Mappings({
-		@Mapping(source = "prefectureCode", target = "prefectureCode.value"),
-		@Mapping(source = "prefectureName", target = "prefectureName.value"),
-		@Mapping(source = "prefectureNameKana", target = "prefectureNameKana.value")
-	})*/
 	default DmEtPrefecture fromEntityToDomainObject(Prefecture entity) {
 		// @formatter:off
 		return DmEtPrefecture.builder()
