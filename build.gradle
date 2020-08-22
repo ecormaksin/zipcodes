@@ -44,10 +44,29 @@ allprojects {
 	}
 
 	dependencies {
-		implementation 'org.springframework.boot:spring-boot-starter'
+		implementation (
+			'org.springframework.boot:spring-boot-starter',
+			"javax.validation:validation-api:${validationApiVersion}",
+			"org.glassfish:javax.el:${javaxElVersion}",
+			"org.mapstruct:mapstruct:${mapStructVersion}"
+		)
+		runtimeOnly (
+			"org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
+		)
+		annotationProcessor (
+			"org.mapstruct:mapstruct-processor:${mapStructVersion}"
+		)
 		testImplementation('org.springframework.boot:spring-boot-starter-test') {
 			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 		}
+	}
+
+	compileJava {
+		options.compilerArgs = [
+			'-Amapstruct.suppressGeneratorTimestamp=true',
+			'-Amapstruct.suppressGeneratorVersionInfoComment=true',
+			'-Amapstruct.defaultComponentModel=spring'
+		]
 	}
 
 	test {

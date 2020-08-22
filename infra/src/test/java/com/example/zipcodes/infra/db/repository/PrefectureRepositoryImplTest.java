@@ -10,10 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.zipcodes.infra.db.jpa.view.Prefecture;
+import com.example.zipcodes.domain.model.DmEtPrefecture;
+
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 @Transactional
+@Slf4j
 //@AutoConfigureTestEntityManager
 class PrefectureRepositoryImplTest {
 
@@ -27,9 +30,15 @@ class PrefectureRepositoryImplTest {
 	@Test
 	void _都道府県リストは47件() {
 
-		List<Prefecture> list = prefectureRepositoryImpl.findAll();
+		List<DmEtPrefecture> list = prefectureRepositoryImpl.findAll();
 
 		assertEquals(47, list.size());
+
+		for (DmEtPrefecture obj : list) {
+			log.info(obj.getPrefectureCode().getValue());
+			log.info(obj.getPrefectureName().getValue());
+			log.info(obj.getPrefectureNameKana().getValue());
+		}
 	}
 
 }
