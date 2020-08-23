@@ -6,10 +6,10 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
-import com.example.zipcodes.domain.model.DmEtPrefecture;
-import com.example.zipcodes.domain.type.prefecture.PrefectureCode;
-import com.example.zipcodes.domain.type.prefecture.PrefectureName;
-import com.example.zipcodes.domain.type.prefecture.PrefectureNameKana;
+import com.example.zipcodes.domain.model.prefecture.DmEtPrefecture;
+import com.example.zipcodes.domain.model.prefecture.PrefectureCode;
+import com.example.zipcodes.domain.model.prefecture.PrefectureName;
+import com.example.zipcodes.domain.model.prefecture.PrefectureNameKana;
 import com.example.zipcodes.infra.db.jpa.view.Prefecture;
 
 @Component

@@ -1,7 +1,7 @@
-package com.example.zipcodes.domain.type.prefecture;
+package com.example.zipcodes.domain.model.prefecture;
 
-import com.example.zipcodes.domain.type.ValidationConcern;
-import com.example.zipcodes.domain.type.validation.notallblank.NotAllBlank;
+import com.example.zipcodes.domain.model.ValidationConcern;
+import com.example.zipcodes.domain.validation.notallblank.NotAllBlank;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

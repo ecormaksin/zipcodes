@@ -1,4 +1,4 @@
-package com.example.zipcodes.domain.type.validation.notallblank;
+package com.example.zipcodes.domain.validation.notallblank;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

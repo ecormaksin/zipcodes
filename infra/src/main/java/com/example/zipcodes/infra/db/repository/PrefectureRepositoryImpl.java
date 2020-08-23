@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Component;
 
-import com.example.zipcodes.domain.model.DmEtPrefecture;
+import com.example.zipcodes.domain.model.prefecture.DmEtPrefecture;
 import com.example.zipcodes.infra.db.jpa.mapper.PrefectureMapper;
 import com.example.zipcodes.infra.db.jpa.view.Prefecture;
 import com.example.zipcodes.infra.db.jpa.view.QPrefecture;

@@ -1,11 +1,7 @@
-package com.example.zipcodes.domain.model;
+package com.example.zipcodes.domain.model.prefecture;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
-import com.example.zipcodes.domain.type.prefecture.PrefectureCode;
-import com.example.zipcodes.domain.type.prefecture.PrefectureName;
-import com.example.zipcodes.domain.type.prefecture.PrefectureNameKana;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

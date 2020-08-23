@@ -1,4 +1,4 @@
-package com.example.zipcodes.domain.type;
+package com.example.zipcodes.domain.model;
 
 import java.io.Serializable;
 import java.util.Set;
