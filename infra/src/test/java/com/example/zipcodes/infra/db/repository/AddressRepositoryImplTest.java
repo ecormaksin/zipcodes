@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.zipcodes.infra.db.jpa.view.Address;
+import com.example.zipcodes.infra.repository.AddressRepositoryImpl;
 
 import lombok.extern.slf4j.Slf4j;
 

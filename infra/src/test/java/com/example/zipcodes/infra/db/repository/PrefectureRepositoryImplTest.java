@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.zipcodes.domain.model.prefecture.DmEtPrefecture;
+import com.example.zipcodes.domain.model.prefecture.PrefectureRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 class PrefectureRepositoryImplTest {
 
 	@Autowired
-	private PrefectureRepositoryImpl prefectureRepositoryImpl;
+	private PrefectureRepository prefectureRepositoryImpl;
 
 	@CustomJpaTest
 	static class TestConfiguration {

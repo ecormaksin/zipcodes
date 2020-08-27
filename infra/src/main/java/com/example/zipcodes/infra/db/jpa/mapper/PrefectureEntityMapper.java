@@ -14,7 +14,7 @@ import com.example.zipcodes.infra.db.jpa.view.Prefecture;
 
 @Component
 @Mapper(injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-public interface PrefectureMapper {
+public interface PrefectureEntityMapper {
 
 	default DmEtPrefecture fromEntityToDomainObject(Prefecture entity) {
 		// @formatter:off

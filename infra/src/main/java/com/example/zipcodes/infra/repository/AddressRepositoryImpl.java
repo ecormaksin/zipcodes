@@ -1,4 +1,4 @@
-package com.example.zipcodes.infra.db.repository;
+package com.example.zipcodes.infra.repository;
 
 import java.util.List;
 

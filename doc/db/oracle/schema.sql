@@ -1,5 +1,5 @@
 -- Project Name : 郵便番号検索システム
--- Date/Time    : 2020/08/19 20:04:38
+-- Date/Time    : 2020/08/27 21:39:07
 -- Author       : eight
 -- RDBMS Type   : Oracle Database
 -- Application  : A5:SQL Mk-2
@@ -70,11 +70,18 @@ create view ADDRESSES as
 SELECT
     ROW_NUMBER() OVER ( 
         ORDER BY
-            ZIP_CODE
+            PREFECTURE_CODE
+            , JAPANESE_LOCAL_GOVERMENT_CODE
+            , ZIP_CODE
             , PREFECTURE_NAME
             , CITY_NAME
             , TOWN_NAME
+            , PREFECTURE_NAME_KANA
+            , CITY_NAME_KANA
+            , TOWN_NAME_KANA 
     ) AS ID
+    , PREFECTURE_CODE                           -- 都道府県コード
+    , JAPANESE_LOCAL_GOVERMENT_CODE             -- 地方公共団体コード
     , ZIP_CODE                                  -- 郵便番号
     , PREFECTURE_NAME                           -- 都道府県名
     , CITY_NAME                                 -- 市区町村名
@@ -85,7 +92,9 @@ SELECT
 FROM
     ( 
         SELECT
-            ZIP_CODE
+            PREFECTURE_CODE
+            , JAPANESE_LOCAL_GOVERMENT_CODE
+            , ZIP_CODE
             , PREFECTURE_NAME
             , CITY_NAME
             , TOWN_NAME
@@ -95,7 +104,9 @@ FROM
         FROM
             ( 
                 SELECT
-                    ZIP_CODE
+                    PREFECTURE_CODE
+                    , JAPANESE_LOCAL_GOVERMENT_CODE
+                    , ZIP_CODE
                     , PREFECTURE_NAME
                     , CITY_NAME
                     , CASE 
@@ -113,7 +124,9 @@ FROM
                 FROM
                     ( 
                         SELECT
-                            ZIP_CODE
+                            SUBSTR(JAPANESE_LOCAL_GOVERMENT_CODE, 1, 2) AS PREFECTURE_CODE
+                            , JAPANESE_LOCAL_GOVERMENT_CODE
+                            , ZIP_CODE
                             , PREFECTURE_NAME
                             , CITY_NAME
                             , CASE 
@@ -155,7 +168,9 @@ FROM
                     TOWN_NAME IS NOT NULL
             ) SQ_B 
         GROUP BY
-            ZIP_CODE
+            PREFECTURE_CODE
+            , JAPANESE_LOCAL_GOVERMENT_CODE
+            , ZIP_CODE
             , PREFECTURE_NAME
             , CITY_NAME
             , TOWN_NAME
@@ -195,6 +210,8 @@ WHERE
 
 comment on table ADDRESSES is '住所';
 comment on column ADDRESSES.ID is 'ID';
+comment on column ADDRESSES.PREFECTURE_CODE is '都道府県コード';
+comment on column ADDRESSES.JAPANESE_LOCAL_GOVERMENT_CODE is '地方公共団体コード';
 comment on column ADDRESSES.ZIP_CODE is '郵便番号';
 comment on column ADDRESSES.PREFECTURE_NAME is '都道府県名';
 comment on column ADDRESSES.CITY_NAME is '市区町村名';
