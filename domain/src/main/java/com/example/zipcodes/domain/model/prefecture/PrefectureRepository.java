@@ -5,4 +5,6 @@ import java.util.List;
 public interface PrefectureRepository {
 
 	List<DmEtPrefecture> findAll();
+
+	DmEtPrefecture findByPrefectureCode(String string);
 }

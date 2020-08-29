@@ -25,7 +25,9 @@ public class PrefectureRepositoryImpl implements PrefectureRepository {
 
     private JPAQueryFactory queryFactory;
 
-    @PostConstruct
+	private QPrefecture qPrefecture = QPrefecture.prefecture;
+
+	@PostConstruct
     void postConstruct() {
         queryFactory = new JPAQueryFactory(entityManager);
     }
@@ -33,7 +35,6 @@ public class PrefectureRepositoryImpl implements PrefectureRepository {
 	@Override
 	public List<DmEtPrefecture> findAll() {
 
-		QPrefecture qPrefecture = QPrefecture.prefecture;
 		// @formatter:off
 		List<Prefecture> entityList = queryFactory
 				.selectFrom(qPrefecture)
@@ -42,5 +43,18 @@ public class PrefectureRepositoryImpl implements PrefectureRepository {
 		// @formatter:on
 
 		return prefectureMapper.fromEntityListToDomainObjectList(entityList);
+	}
+
+	@Override
+	public DmEtPrefecture findByPrefectureCode(final String prefectureCode) {
+
+		// @formatter:off
+		Prefecture prefecture = queryFactory
+				.selectFrom(qPrefecture)
+				.where( qPrefecture.prefectureCode.eq(prefectureCode) )
+				.fetchOne();
+		// @formatter:on
+
+		return prefectureMapper.fromEntityToDomainObject(prefecture);
 	}
 }

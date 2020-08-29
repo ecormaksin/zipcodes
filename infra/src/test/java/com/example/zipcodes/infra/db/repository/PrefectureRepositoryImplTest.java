@@ -30,7 +30,7 @@ class PrefectureRepositoryImplTest {
 	}
 
 	@Test
-	void _都道府県リストは47件() {
+	void 都道府県リストは47件() {
 
 		List<DmEtPrefecture> list = prefectureRepositoryImpl.findAll();
 
@@ -39,6 +39,17 @@ class PrefectureRepositoryImplTest {
 		for (DmEtPrefecture obj : list) {
 			log.info(obj.toString());
 		}
+	}
+
+	@Test
+	void 都道府県コード13は東京都() throws Exception {
+
+		DmEtPrefecture prefecture = prefectureRepositoryImpl.findByPrefectureCode("13");
+
+		assertNotNull(prefecture);
+		assertEquals("13", prefecture.getPrefectureCode().getValue());
+		assertEquals("東京都", prefecture.getPrefectureName().getValue());
+		assertEquals("トウキョウト", prefecture.getPrefectureNameKana().getValue());
 	}
 
 }
