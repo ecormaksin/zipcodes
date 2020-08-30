@@ -13,11 +13,14 @@ import com.example.zipcodes.domain.model.prefecture.DmEtPrefecture;
 public interface PrefectureDtoMapper {
 
 	default PrefectureDto fromDomainObjectToDto(DmEtPrefecture entity) {
+
 		// @formatter:off
 		return PrefectureDto.builder()
-				.prefectureCode( entity.getPrefectureCode().getValue() )
-				.prefectureName( entity.getPrefectureName().getValue() )
-				.prefectureNameKana( entity.getPrefectureNameKana().getValue() )
+				.code( entity.getCode().getValue() )
+				.kanjiName( entity.getKanjiName().getValue() )
+				.hiraganaName( entity.getHiraganaName().getValue() )
+				.katakanaFullwidthName( entity.getKatakanaFullwidthName().getValue() )
+				.katakanaHalfwidthName( entity.getKatakanaHalfwidthName().getValue() )
 				.build();
 		// @formatter:on
 	}

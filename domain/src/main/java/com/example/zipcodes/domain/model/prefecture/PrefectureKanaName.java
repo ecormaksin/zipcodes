@@ -8,14 +8,14 @@ import lombok.Getter;
 
 @Getter
 @EqualsAndHashCode(callSuper = false)
-public class PrefectureName extends ValidationConcern {
+abstract class PrefectureKanaName extends ValidationConcern {
 
-	public static final int LENGTH_MAX = 5;
+	public static final int LENGTH_MAX = 10;
 
     @NotAllBlank(max = LENGTH_MAX)
-    private final String value;
+    protected final String value;
 
-    public PrefectureName(final String value) {
+    public PrefectureKanaName(final String value) {
         this.value = value;
         this.validate(this);
     }

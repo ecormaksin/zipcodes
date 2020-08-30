@@ -47,9 +47,11 @@ class PrefectureRepositoryImplTest {
 		DmEtPrefecture prefecture = prefectureRepositoryImpl.findByPrefectureCode("13");
 
 		assertNotNull(prefecture);
-		assertEquals("13", prefecture.getPrefectureCode().getValue());
-		assertEquals("東京都", prefecture.getPrefectureName().getValue());
-		assertEquals("トウキョウト", prefecture.getPrefectureNameKana().getValue());
+		assertEquals("13", prefecture.getCode().getValue());
+		assertEquals("東京都", prefecture.getKanjiName().getValue());
+		assertEquals("とうきょうと", prefecture.getHiraganaName().getValue());
+		assertEquals("トウキョウト", prefecture.getKatakanaFullwidthName().getValue());
+		assertEquals("ﾄｳｷｮｳﾄ", prefecture.getKatakanaHalfwidthName().getValue());
 	}
 
 }

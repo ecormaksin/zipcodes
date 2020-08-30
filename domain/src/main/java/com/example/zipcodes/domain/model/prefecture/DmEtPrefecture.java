@@ -15,27 +15,41 @@ public class DmEtPrefecture {
 
 	@Valid
 	@NotNull
-	private PrefectureCode prefectureCode;
+	private PrefectureCode code;
 
 	@Setter
 	@Valid
 	@NotNull
-	private PrefectureName prefectureName;
+	private PrefectureKanjiName kanjiName;
 
 	@Setter
 	@Valid
 	@NotNull
-	private PrefectureNameKana prefectureNameKana;
+	private PrefectureHiraganaName hiraganaName;
+
+	@Setter
+	@Valid
+	@NotNull
+	private PrefectureKatakanaFullwidthName katakanaFullwidthName;
+
+	@Setter
+	@Valid
+	@NotNull
+	private PrefectureKatakanaHalfwidthName katakanaHalfwidthName;
 
 	public String toString() {
 		// @formatter:off
 		return String.format(
-				"{\"prefectureCode\": \"%s\", "
-				+ "\"prefectureName\": \"%s\", "
-				+ "\"prefectureNameKana\": \"%s\"}",
-				prefectureCode.getValue(),
-				prefectureName.getValue(),
-				prefectureNameKana.getValue());
+				"\"dmEtPrefecture\": {\"code\": \"%s\", "
+				+ "\"kanjiName\": \"%s\", "
+				+ "\"hiraganaFullwidthName\": \"%s\"}"
+				+ "\"katakanaHalfwidthName\": \"%s\"}"
+				+ "\"katakanaHalfwidthName\": \"%s\"}"
+				, code.getValue()
+				, kanjiName.getValue()
+				, hiraganaName.getValue()
+				, katakanaFullwidthName.getValue()
+				, katakanaHalfwidthName.getValue());
 		// @formatter:on
 	}
 }
