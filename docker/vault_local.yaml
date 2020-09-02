@@ -1,0 +1,17 @@
+version: '3'
+services:
+  local-vault:
+    image: vault
+    cap_add:
+      - IPC_LOCK
+    environment:
+      - VAULT_LOCAL_CONFIG={"backend":{"file":{"path":"/vault/file"}},"api_addr":"http://127.0.0.1:8200","listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":true}}}
+    ports:
+      - 8200:8200
+    volumes:
+      - vault-logs:/vault/logs
+      - vault-file:/vault/file
+    command: server
+volumes:
+  vault-logs:
+  vault-file:

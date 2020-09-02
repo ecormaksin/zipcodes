@@ -1,0 +1,5 @@
+{
+	"spring.datasource.url": "jdbc:log4jdbc:oracle:thin:@<tnsname>?TNS_ADMIN=<wallet_directory_path>",
+	"spring.datasource.username": "<username>",
+	"spring.datasource.password": "<password>"
+}

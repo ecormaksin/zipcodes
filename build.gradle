@@ -109,6 +109,7 @@ project(":infra") {
 		}
 		implementation (
 			'org.springframework.boot:spring-boot-starter-data-jpa',
+			'org.springframework.cloud:spring-cloud-starter-vault-config',
 			"org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:${log4jdbcLog4j2Jdbc41Version}",
 			"com.querydsl:querydsl-apt:${queryDslVersion}",
 			"com.querydsl:querydsl-jpa:${queryDslVersion}",
@@ -116,13 +117,25 @@ project(":infra") {
 			'com.ibm.icu:icu4j:67.1'
 		)
 		developmentOnly 'org.springframework.boot:spring-boot-devtools'
-		runtimeOnly files('libs/ojdbc6.jar')
+		runtimeOnly files(
+			'libs/ojdbc8.jar',
+			'libs/ucp.jar',
+			'libs/oraclepki.jar',
+			'libs/osdt_core.jar',
+			'libs/osdt_cert.jar'
+		)
 		annotationProcessor (
 			'org.springframework.boot:spring-boot-configuration-processor',
 			"javax.persistence:javax.persistence-api",
 			"javax.annotation:javax.annotation-api",
 			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
 		)
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		}
 	}
 
 	bootJar {
