@@ -162,7 +162,7 @@ vault operator init
 vault secrets enable -path=secret kv
 
 cd ./vault
-vault kv put secret/zipcodes @db.json
+vault kv put secret/zipcodes/local_vault @db.json
 
 vault policy write zipcodes-read-policy zipcodes-read-policy.hcl
 
