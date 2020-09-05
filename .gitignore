@@ -33,4 +33,7 @@ out/
 
 ### VS Code ###
 .vscode/
-/work.md
+
+### Customized ###
+work.md
+*.swp
