@@ -1,7 +1,12 @@
 package com.example.zipcodes.ui.presentation.prefecture.get_list;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +25,15 @@ public class PrefectureGetListController {
 	private final PrefectureDtoMapper prefectureMapper;
 
 	@GetMapping("/prefectures")
-	List<PrefectureDto> getList() {
+	ResponseEntity<List<PrefectureDto>> getList() {
 
 		List<DmEtPrefecture> domainEntities = prefectureGetListUseCase.findAll();
 
-		return prefectureMapper.fromDomainObjectListToDtoList(domainEntities);
+		List<PrefectureDto> list = prefectureMapper.fromDomainObjectListToDtoList(domainEntities);
+
+	    HttpHeaders httpHeaders = new HttpHeaders();
+	    httpHeaders.setContentType(new MediaType(MediaType.APPLICATION_JSON, StandardCharsets.UTF_8));
+
+	    return new ResponseEntity<>(list, httpHeaders, HttpStatus.OK);
 	}
 }
