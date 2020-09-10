@@ -1,20 +1,17 @@
-spring:
-  cloud:
-    vault:
-      authentication: TOKEN
-      token: ${VAULT_TOKEN}
-      scheme: http
-      host: localhost
-      port: 8200
-      kv:
-        enabled: true
-        application-name: zipcodes
+spring.cloud.vault:
+  authentication: TOKEN
+  token: ${VAULT_TOKEN}
+  scheme: http
+  host: localhost
+  port: 8200
+  kv:
+    enabled: true
+    application-name: zipcodes
 
 ---
 
 spring:
-  profiles: 
-    active: local_dev
+  profiles: local_dev
   cloud:
     vault:
       enabled: false

@@ -18,7 +18,6 @@ allprojects {
 	apply plugin: 'java'
 
 	sourceCompatibility = JavaVersion.VERSION_1_8
-
 }
 
 subprojects {
@@ -87,6 +86,20 @@ subprojects {
 	}
 }
 
+configure(subprojects.findAll {it.name != 'domain'}) {
+    dependencies {
+		implementation (
+			'org.springframework.cloud:spring-cloud-starter-vault-config'
+		)
+    }
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		}
+	}
+}
+
 project(":domain") {
 
 	bootJar {
@@ -109,7 +122,6 @@ project(":infra") {
 		}
 		implementation (
 			'org.springframework.boot:spring-boot-starter-data-jpa',
-			'org.springframework.cloud:spring-cloud-starter-vault-config',
 			"org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:${log4jdbcLog4j2Jdbc41Version}",
 			"com.querydsl:querydsl-apt:${queryDslVersion}",
 			"com.querydsl:querydsl-jpa:${queryDslVersion}",
@@ -132,12 +144,6 @@ project(":infra") {
 		)
 	}
 
-	dependencyManagement {
-		imports {
-			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-		}
-	}
-
 	bootJar {
 		enabled = false
 	}
@@ -153,14 +159,14 @@ project(":ui") {
 			'org.springframework.boot:spring-boot-starter-web',
 			"com.fasterxml.jackson.core:jackson-databind:${jacksonBindVersion}"
 		)
-
 		api (
-			project(":domain")
-			//project(":infra")
+			project(":domain"),
+			project(":infra")
 		)
 	}
 
 	bootJar {
+		archiveName = "zipcodes.jar"
 		enabled = true
 	}
 }

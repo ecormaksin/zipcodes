@@ -1,0 +1,12 @@
+[Unit]
+Description=Get and search prefectures, cities, zipcodes, addresses
+After=syslog.target
+ConditionPathExists=/opt/zipcodes
+ 
+[Service]
+User=spring
+ExecStart=/opt/zipcodes/start_app.sh
+SuccessExitStatus=143
+ 
+[Install] 
+WantedBy=multi-user.target

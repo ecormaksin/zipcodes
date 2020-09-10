@@ -121,3 +121,34 @@ GRANT CREATE SESSION TO ZIP_CODE;
 GRANT DB_LOCAL_ADMIN TO ZIP_CODE;
 GRANT UNLIMITED TABLESPACE TO ZIP_CODE;
 ```
+
+# ユーザーの作成
+
+```
+sudo groupadd spring
+sudo useradd -g spring spring
+```
+
+# アプリケーション用ディレクトリの作成
+
+```
+sudo mkdir -p /opt/zipcodes
+sudo chown -R spring:spring /opt/zipcodes
+```
+
+# Oracle Walletのアップロード
+
+任意のディレクトリへアップロードする
+
+# Vault
+
+## インストール
+
+https://learn.hashicorp.com/tutorials/vault/getting-started-install
+
+```
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo yum -y install vault
+```
+
