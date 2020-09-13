@@ -37,3 +37,4 @@ out/
 ### Customized ###
 work.md
 *.swp
+/eclipse.log

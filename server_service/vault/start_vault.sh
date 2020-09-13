@@ -9,7 +9,6 @@ cd `dirname $0`
 
 USE_DOCKER_CONTAINER="$1"
 VAULT_DEV_ROOT_TOKEN_ID=`cat "$2"`
-#SPRING_ACTIVE_PROFILE_NAME="$3"
 
 if [ "${USE_DOCKER_CONTAINER}" = "1" ]; then
 
