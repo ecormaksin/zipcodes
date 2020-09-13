@@ -86,7 +86,7 @@ subprojects {
 	}
 }
 
-configure(subprojects.findAll {it.name != 'domain'}) {
+configure(subprojects - project(":domain")) {
     dependencies {
 		implementation (
 			'org.springframework.cloud:spring-cloud-starter-vault-config'
@@ -166,7 +166,7 @@ project(":ui") {
 	}
 
 	bootJar {
-		archiveName = "zipcodes.jar"
+		archiveFileName = "zipcodes.jar"
 		enabled = true
 	}
 }
