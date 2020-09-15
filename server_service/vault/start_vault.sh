@@ -1,11 +1,16 @@
 #!/bin/sh
 
+cd `dirname $0`
+
 if [ $# -ne 2 ]; then
 	echo "引数が正しくありません。"
-	exit 0
+	exit 1
 fi
 
-cd `dirname $0`
+if [ ! -e "$2" ]; then
+    echo "引数が正しくありません。"
+    exit 1
+fi
 
 USE_DOCKER_CONTAINER="$1"
 VAULT_DEV_ROOT_TOKEN_ID=`cat "$2"`
