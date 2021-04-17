@@ -133,8 +133,8 @@ project(":infra") {
 			'libs/ojdbc8.jar',
 			'libs/ucp.jar',
 			'libs/oraclepki.jar',
-			'libs/osdt_core.jar',
-			'libs/osdt_cert.jar'
+			'oracle.osdt/osdt_core.jar',
+			'oracle.osdt/osdt_cert.jar'
 		)
 		annotationProcessor (
 			'org.springframework.boot:spring-boot-configuration-processor',

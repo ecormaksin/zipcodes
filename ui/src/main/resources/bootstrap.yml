@@ -1,18 +1,21 @@
-spring.cloud.vault:
-  fail-fast: true
-  authentication: TOKEN
-  token: ${VAULT_TOKEN}
-  scheme: http
-  host: localhost
-  port: 8200
-  kv:
-    enabled: true
-    application-name: zipcodes
+spring:
+  cloud:
+    vault:
+      enabled: false
+      fail-fast: false
 
 ---
 
 spring:
-  profiles: local_dev
+  profiles: local_docker_vault, docker_vault, production
   cloud:
     vault:
-      enabled: false
+      fail-fast: true
+      authentication: TOKEN
+      token: ${VAULT_TOKEN}
+      scheme: http
+      host: localhost
+      port: 8200
+      kv:
+        enabled: true
+        application-name: zipcodes
