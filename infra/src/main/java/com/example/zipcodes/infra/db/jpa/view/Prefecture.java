@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="PREFECTURES")
+@Table(schema = "ZIP_CODE", name="PREFECTURES")
 @NamedQuery(name="Prefecture.findAll", query="SELECT p FROM Prefecture p")
 public class Prefecture implements Serializable {
 	private static final long serialVersionUID = 1L;
