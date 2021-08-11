@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'io.freefair.lombok'
+	id 'org.springframework.boot'
+	id 'io.spring.dependency-management'
+}
+
+group = 'com.example.zipcodes'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated/sources/annotationProcessor/java/main"]
+		}
+	}
+}
+
+dependencies {
+	implementation (
+		'org.springframework.boot:spring-boot-starter-validation',
+		'org.mapstruct:mapstruct:1.4.2.Final'
+	)
+	annotationProcessor (
+		'javax.annotation:javax.annotation-api',
+		'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	)
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testRuntimeOnly (
+		'org.junit.platform:junit-platform-commons:1.8.0-M1'
+	)
+}
+
+compileJava {
+    options.compilerArgs = [
+        '-Amapstruct.suppressGeneratorTimestamp=true',
+        '-Amapstruct.suppressGeneratorVersionInfoComment=true',
+        '-Amapstruct.defaultComponentModel=spring'
+    ]
+}
