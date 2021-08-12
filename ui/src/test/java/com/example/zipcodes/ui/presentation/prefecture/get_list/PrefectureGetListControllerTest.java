@@ -21,10 +21,10 @@ import com.example.zipcodes.domain.model.prefecture.PrefectureHiraganaName;
 import com.example.zipcodes.domain.model.prefecture.PrefectureKanjiName;
 import com.example.zipcodes.domain.model.prefecture.PrefectureKatakanaFullwidthName;
 import com.example.zipcodes.domain.model.prefecture.PrefectureKatakanaHalfwidthName;
-import com.example.zipcodes.domain.usecase.prefecture.PrefectureGetListUseCase;
 import com.example.zipcodes.ui.presentation.prefecture.PrefectureDto;
 import com.example.zipcodes.ui.presentation.prefecture.PrefectureDtoMapper;
 import com.example.zipcodes.ui.presentation.prefecture.PrefectureDtoMapperImpl;
+import com.example.zipcodes.ui.usecase.prefecture.PrefectureGetListUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(PrefectureGetListController.class)

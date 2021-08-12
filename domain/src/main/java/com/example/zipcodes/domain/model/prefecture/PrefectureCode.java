@@ -10,13 +10,15 @@ import lombok.Getter;
 @EqualsAndHashCode(callSuper = false)
 public class PrefectureCode extends ValidationConcern {
 
+	private static final long serialVersionUID = 1L;
+
 	public static final int LENGTH = 2;
 
-    @NotAllBlank(min = LENGTH, max = LENGTH)
-    private final String value;
+	@NotAllBlank(min = LENGTH, max = LENGTH)
+	private final String value;
 
-    public PrefectureCode(final String value) {
-        this.value = value;
-        this.validate(this);
-    }
+	public PrefectureCode(final String value) {
+		this.value = value;
+		this.validate(this);
+	}
 }

@@ -1,39 +1,39 @@
 plugins {
-	id 'project.java-conventions'
+    id 'project.java-conventions'
 }
 
 bootJar {
-	enabled = false
+    enabled = false
 }
 
 jar {
-	enabled = true
+    enabled = true
 }
 
 dependencies {
-	implementation ('com.querydsl:querydsl-sql:4.4.0') {
-		exclude group: 'joda-time', module: 'joda-time'
-	}
-	implementation (
-		project(':domain'),
-		'org.springframework.boot:spring-boot-starter-data-jpa',
-       'com.ibm.icu:icu4j:69.1',
-		'com.querydsl:querydsl-apt:4.4.0',
-		'com.querydsl:querydsl-jpa:4.4.0',
-		'joda-time:joda-time:2.10.10',
-		'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
-	)
-	runtimeOnly (
-		files(
+    implementation ("com.querydsl:querydsl-sql:${queryDslVersion}") {
+        exclude group: 'joda-time', module: 'joda-time'
+    }
+    implementation (
+        project(':domain'),
+        'org.springframework.boot:spring-boot-starter-data-jpa',
+        "com.ibm.icu:icu4j:${icu4jVersion}",
+        "com.querydsl:querydsl-apt:${queryDslVersion}",
+        "com.querydsl:querydsl-jpa:${queryDslVersion}",
+        "joda-time:joda-time:${jodaTimeVersion}",
+        "org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:${log4jdbcLog4j2Jdbc41Version}"
+    )
+    runtimeOnly (
+        files(
             'libs/ojdbc8.jar',
             'libs/ucp.jar',
             'libs/oraclepki.jar',
             'oracle.osdt/osdt_core.jar',
             'oracle.osdt/osdt_cert.jar'
         )
-	)
-	annotationProcessor (
-       'com.querydsl:querydsl-apt:4.4.0:jpa',
-		'javax.persistence:javax.persistence-api'
-	)
+    )
+    annotationProcessor (
+        "com.querydsl:querydsl-apt:${queryDslVersion}:jpa",
+        'javax.persistence:javax.persistence-api'
+    )
 }

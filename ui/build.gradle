@@ -1,5 +1,5 @@
 plugins {
-	id 'project.java-conventions'
+    id 'project.java-conventions'
 }
 
 bootJar {
@@ -8,14 +8,15 @@ bootJar {
 }
 
 dependencies {
-	implementation (
-		project(':domain'),
-       'org.springframework.boot:spring-boot-loader:2.3.10.RELEASE',
-		'org.springframework.boot:spring-boot-starter-web'
-	)
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor (
-       'org.springframework:spring-context-indexer:5.3.6',
-		'org.springframework.boot:spring-boot-configuration-processor'
-	)
+    implementation (
+        project(':domain'),
+        project(':infra'),
+        "org.springframework.boot:spring-boot-loader:${springBootVersion}",
+        'org.springframework.boot:spring-boot-starter-web'
+    )
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor (
+        "org.springframework:spring-context-indexer:${springContextIndexerVersion}",
+        'org.springframework.boot:spring-boot-configuration-processor'
+    )
 }

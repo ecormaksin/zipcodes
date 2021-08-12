@@ -20,17 +20,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PrefectureRepositoryImpl implements PrefectureRepository {
 
-    private final EntityManager entityManager;
+	private final EntityManager entityManager;
 	private final PrefectureEntityMapper prefectureMapper;
 
-    private JPAQueryFactory queryFactory;
+	private JPAQueryFactory queryFactory;
 
 	private QPrefecture qPrefecture = QPrefecture.prefecture;
 
 	@PostConstruct
-    void postConstruct() {
-        queryFactory = new JPAQueryFactory(entityManager);
-    }
+	void postConstruct() {
+		queryFactory = new JPAQueryFactory(entityManager);
+	}
 
 	@Override
 	public List<DmEtPrefecture> findAll() {

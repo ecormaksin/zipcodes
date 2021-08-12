@@ -7,7 +7,9 @@ import lombok.Getter;
 @EqualsAndHashCode(callSuper = false)
 public class PrefectureKatakanaFullwidthName extends PrefectureKanaName {
 
-    public PrefectureKatakanaFullwidthName(final String value) {
-        super(value);
-    }
+	private static final long serialVersionUID = 1L;
+
+	public PrefectureKatakanaFullwidthName(final String value) {
+		super(value);
+	}
 }
